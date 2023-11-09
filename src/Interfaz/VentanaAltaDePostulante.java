@@ -120,8 +120,8 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
                                         .addComponent(botonPresencial, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(botonMixto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 22, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addGap(0, 19, Short.MAX_VALUE)))))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
