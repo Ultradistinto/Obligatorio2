@@ -2,9 +2,9 @@
 package Interfaz;
 
 
-public class VentanaHistoriaDePostulante extends javax.swing.JFrame {
+public class VentanaHistorialDePostulante extends javax.swing.JFrame {
 
-    public VentanaHistoriaDePostulante() {
+    public VentanaHistorialDePostulante() {
         initComponents();
     }
 
