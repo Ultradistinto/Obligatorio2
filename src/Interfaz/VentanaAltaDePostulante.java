@@ -1,11 +1,14 @@
 package Interfaz;
-
+import Logica.Sistema;
+import Logica.Postulante;
+import javax.swing.*;
 
 public class VentanaAltaDePostulante extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaAltaDePostulante() {
+    public VentanaAltaDePostulante(Sistema unSistema) {
         initComponents();
+        modelo = unSistema;
     }
 
     
@@ -32,6 +35,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         botonMixto = new javax.swing.JRadioButton();
         botonCancelar = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
+        labelAltaPostulante = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +79,11 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         botonMixto.setText("Mixto");
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         botonSiguiente.setText("Siguiente");
         botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +91,9 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
                 botonSiguienteActionPerformed(evt);
             }
         });
+
+        labelAltaPostulante.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelAltaPostulante.setText("Alta postulante");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,9 +112,8 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
                             .addComponent(labelMail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelCedula)
                             .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(labelLinkedin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelFormato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(labelLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textoLinkedin)
@@ -122,11 +133,17 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
                                         .addComponent(botonMixto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 19, Short.MAX_VALUE)))))
                 .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelAltaPostulante)
+                .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(labelAltaPostulante)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombre)
                     .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,7 +175,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
                     .addComponent(botonMixto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(botonSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -167,12 +184,61 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textoMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoMailActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_textoMailActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+        String unNombre = textoNombre.getText();
+        int unTelefono;
+        String unaDireccion = textoDireccion.getText();
+        int unaCedula;
+        String unMail = textoMail.getText();
+        String unLinkedin = textoLinkedin.getText();
         
+        if (textoCedula.getText().trim().isEmpty() || textoNombre.getText().trim().isEmpty() || textoTelefono.getText().trim().isEmpty() || textoDireccion.getText().trim().isEmpty() || textoMail.getText().trim().isEmpty() || textoLinkedin.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Intente no dejar expacios vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        try {
+            unaCedula = Integer.parseInt(textoCedula.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error: Cedula tiene que ser un Numero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        try {
+            unTelefono = Integer.parseInt(textoTelefono.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error: Telefono tiene que ser un Numero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        try{
+            this.modelo.addPostulante(unNombre, unaCedula, unaDireccion, unTelefono, unMail, unLinkedin, unMail);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        textoNombre.setText("");
+        textoCedula.setText("");
+        textoDireccion.setText("");
+        textoTelefono.setText("");
+        textoMail.setText("");
+        textoLinkedin.setText("");
+        
+        
+        VentanaNivelTemas vent =  new VentanaNivelTemas(modelo);
+        vent.setVisible(true);
     }//GEN-LAST:event_botonSiguienteActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     
     
@@ -184,6 +250,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
     private javax.swing.JRadioButton botonRemoto;
     private javax.swing.JButton botonSiguiente;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel labelAltaPostulante;
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelDireccion;
     private javax.swing.JLabel labelFormato;

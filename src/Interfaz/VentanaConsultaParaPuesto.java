@@ -29,7 +29,7 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTitulo.setText("Consulta para puesto ");
 
         labelPuesto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -53,6 +53,11 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
         jScrollPane2.setViewportView(listaPostulantes);
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         botonExportar.setText("Exportar");
 
@@ -81,7 +86,7 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTitulo)
-                .addGap(136, 136, 136))
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +109,7 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelar)
                     .addComponent(botonExportar))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +118,10 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
     private void botonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConsultaActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     
     

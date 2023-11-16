@@ -1,13 +1,15 @@
 
 package Interfaz;
-
+import Logica.Sistema;
 
 public class VentanaMenu extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaMenu() {
+    public VentanaMenu(Sistema unSistema) {
+        modelo = unSistema;
         initComponents();
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -15,7 +17,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         OpcionesMenu = new javax.swing.JMenu();
         RegistroDeTematica = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        opcionAltaPostulante = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
 
@@ -31,8 +33,13 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         OpcionesMenu.add(RegistroDeTematica);
 
-        jMenuItem2.setText("jMenuItem2");
-        OpcionesMenu.add(jMenuItem2);
+        opcionAltaPostulante.setText("Alta Postulante");
+        opcionAltaPostulante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionAltaPostulanteActionPerformed(evt);
+            }
+        });
+        OpcionesMenu.add(opcionAltaPostulante);
 
         jMenuItem3.setText("jMenuItem3");
         OpcionesMenu.add(jMenuItem3);
@@ -63,14 +70,19 @@ public class VentanaMenu extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_RegistroDeTematicaActionPerformed
 
+    private void opcionAltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionAltaPostulanteActionPerformed
+        VentanaAltaDePostulante vent =  new VentanaAltaDePostulante(modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_opcionAltaPostulanteActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu OpcionesMenu;
     private javax.swing.JMenuItem RegistroDeTematica;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem opcionAltaPostulante;
     // End of variables declaration//GEN-END:variables
 }

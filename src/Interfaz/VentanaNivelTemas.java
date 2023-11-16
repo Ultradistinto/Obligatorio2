@@ -1,12 +1,13 @@
 
 package Interfaz;
-
+import Logica.Sistema;
 
 public class VentanaNivelTemas extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaNivelTemas() {
+    public VentanaNivelTemas(Sistema unSistema) {
         initComponents();
+        modelo = unSistema;
     }
 
     
@@ -51,6 +52,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         botonEliminar.setText("Eliminar");
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         botonRegistrar.setText("Registrar");
 
@@ -115,6 +121,10 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     
     

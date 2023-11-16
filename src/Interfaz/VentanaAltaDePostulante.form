@@ -41,10 +41,8 @@
                           <Component id="labelMail" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="labelCedula" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labelNombre" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="labelLinkedin" alignment="0" max="32767" attributes="0"/>
-                              <Component id="labelFormato" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="labelLinkedin" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelFormato" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -72,12 +70,19 @@
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="labelAltaPostulante" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelAltaPostulante" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -116,7 +121,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="botonSiguiente" pref="33" max="32767" attributes="0"/>
+                  <Component id="botonSiguiente" pref="35" max="32767" attributes="0"/>
                   <Component id="botonCancelar" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -233,6 +238,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonSiguiente">
       <Properties>
@@ -241,6 +249,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSiguienteActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelAltaPostulante">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Alta postulante"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
