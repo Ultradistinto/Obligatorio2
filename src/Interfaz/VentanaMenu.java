@@ -66,7 +66,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistroDeTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroDeTematicaActionPerformed
-        VentanaRegistroDeTematica vent = new VentanaRegistroDeTematica();
+        VentanaRegistroDeTematica vent = new VentanaRegistroDeTematica(modelo);
         vent.setVisible(true);
     }//GEN-LAST:event_RegistroDeTematicaActionPerformed
 

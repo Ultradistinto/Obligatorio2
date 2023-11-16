@@ -231,9 +231,18 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         textoMail.setText("");
         textoLinkedin.setText("");
         
-        
-        VentanaNivelTemas vent =  new VentanaNivelTemas(modelo);
-        vent.setVisible(true);
+        try{
+            boolean hay = modelo.hayTemas();
+            if(hay){
+                VentanaNivelTemas vent =  new VentanaNivelTemas(modelo);
+                vent.setVisible(true);
+            }
+            else{
+                throw new Exception("Error: Primero debe ingresar algun tema antes que el postulante");
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed

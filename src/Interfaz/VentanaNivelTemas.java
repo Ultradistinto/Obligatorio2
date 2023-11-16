@@ -1,13 +1,21 @@
 
 package Interfaz;
 import Logica.Sistema;
+import Logica.Tematica;
+import Logica.Postulante;
+import javax.swing.JSpinner;
 
 public class VentanaNivelTemas extends javax.swing.JFrame {
     private Sistema modelo;
+    private Postulante postulante;
     
-    public VentanaNivelTemas(Sistema unSistema) {
+    public VentanaNivelTemas(Sistema unSistema, Postulante unPostulante) {
         initComponents();
         modelo = unSistema;
+        postulante = unPostulante;
+        for (Tematica tema : modelo.getListaTematicas()) {
+                comboTemas.addItem(tema);
+        }
     }
 
     
@@ -16,9 +24,9 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     private void initComponents() {
 
         labelTemas = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboTemas = new javax.swing.JComboBox<>();
         labelNivel = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spinnerNivel = new javax.swing.JSpinner();
         botonAgregar = new javax.swing.JButton();
         labelExperiencia = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -32,10 +40,9 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         labelTemas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelTemas.setText("Temas:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Java", "HTML", "CSS", "Javascript" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboTemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboTemasActionPerformed(evt);
             }
         });
 
@@ -43,6 +50,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         labelNivel.setText("Nivel:");
 
         botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
 
         labelExperiencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelExperiencia.setText("Experiencia:");
@@ -75,10 +87,10 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(spinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(comboTemas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,11 +107,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTemas)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboTemas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNivel)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonAgregar))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,13 +130,20 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void comboTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTemasActionPerformed
+        
+    }//GEN-LAST:event_comboTemasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        String selected = spinnerNivel.getSelectedItem().toString();
+        int nivel = Integer.parseInt(selected);
+        
+        
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
     
     
@@ -134,12 +153,12 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonRegistrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Tematica> comboTemas;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel labelExperiencia;
     private javax.swing.JLabel labelNivel;
     private javax.swing.JLabel labelTemas;
+    private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,20 +95,16 @@ public class Postulante {
         setTipoTrabajo(unTipo);
     }
     
-    public void addHablidades(String unNombre, int unNivel){
-        boolean contiene = false;
-
+    public void addHablidades(String unNombre, int unNivel) throws Exception {
+       
         for(String recorrido:habilidades){
             String[] partes = recorrido.split(",");
             if(partes[0].equals(unNombre)){
-                //tirar ventana error
-                contiene = true;
+                throw new Exception("Error: Esta Temática ya fue ingresada");
             }
         }
-        if(!contiene){
-
-            habilidades.add(unNombre+","+unNivel);
-        }
+        
+        habilidades.add(unNombre+","+unNivel);
     }
     
     public void removeHablidad(String unNombre, int unNivel){

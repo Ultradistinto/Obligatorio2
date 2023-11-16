@@ -17,8 +17,7 @@ public class Sistema {
         listaPostulantes = new ArrayList<>();
         listaTematicas = new ArrayList<>();
         listaEvaluadores = new ArrayList<>();
-        listaPuestos = new ArrayList<>();
-        
+        listaPuestos = new ArrayList<>();   
     }
     
     
@@ -53,17 +52,23 @@ public class Sistema {
         listaPostulantes.add(nuevoPostulante);
     }
     
-    public void addTematica(String unNombre, String unaDescripcion){
-        boolean Agrego = true ;
+    public boolean hayTemas(){
+        boolean retorno = false;
+        if(!this.listaTematicas.isEmpty()){
+            retorno = true;
+        }
+        return retorno;
+    }
+    
+    public void addTematica(String unNombre, String unaDescripcion) throws Exception {
+    
         for(Tematica recorrido:listaTematicas){
             if(recorrido.getNombre().equals(unNombre)){
-                Agrego = false;
+                throw new Exception("Error: Esta Temática ya fue ingresada");
             }
         }
-        if(Agrego){
-            Tematica posibleTema = new Tematica(unNombre,unaDescripcion);
-            listaTematicas.add(posibleTema);
-        }
+        Tematica posibleTema = new Tematica(unNombre,unaDescripcion);
+        listaTematicas.add(posibleTema);
     }
     
     public void removePostulante(Postulante post){

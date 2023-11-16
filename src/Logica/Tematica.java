@@ -26,5 +26,10 @@ public class Tematica {
     public Tematica(String unNombre, String unaDescripcion){
         setDescripcion(unaDescripcion);
         setNombre(unNombre);
-    } 
+    }
+    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
 }
