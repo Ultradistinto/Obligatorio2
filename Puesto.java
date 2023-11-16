@@ -36,6 +36,4 @@ public class Puesto {
         setNombre(unNombre);
         setTipo(unTipo);
     }
-
 }
-

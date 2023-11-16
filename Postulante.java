@@ -11,10 +11,8 @@ public class Postulante {
     private String mail;
     private String linkedin;
     private String tipoTrabajo;
-    private ArrayList<String> habilidades;
-    private ArrayList<Entrevistas> listaEntrevistas;
-    
-
+    private ArrayList<String> Habilidades;
+    private ArrayList<Entrevistas> ListaEntrevistas;
     
     public void setNombre(String unNombre){
         this.nombre = unNombre;
@@ -74,8 +72,7 @@ public class Postulante {
     
     public boolean esValido(String unaHabilidad, int unNivel){
         boolean retorno = false;
-
-        for(String recorrido:habilidades){
+        for(String recorrido:Habilidades){
             String[] partes = recorrido.split(",");
             if( partes[0].equals(unaHabilidad) && Integer.parseInt(partes[1])>=unNivel){
                 //tirar ventana error
@@ -97,8 +94,7 @@ public class Postulante {
     
     public void addHablidades(String unNombre, int unNivel){
         boolean contiene = false;
-
-        for(String recorrido:habilidades){
+        for(String recorrido:Habilidades){
             String[] partes = recorrido.split(",");
             if(partes[0].equals(unNombre)){
                 //tirar ventana error
@@ -106,18 +102,17 @@ public class Postulante {
             }
         }
         if(!contiene){
-
-            habilidades.add(unNombre+","+unNivel);
+            Habilidades.add(unNombre+","+unNivel);
         }
     }
     
     public void removeHablidad(String unNombre, int unNivel){
        String habilidad = unNombre + "," + unNivel;
-       habilidades.remove(habilidad);
+       Habilidades.remove(habilidad);
     }
     
     public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario){
         Entrevistas nuevaEntrev = new Entrevistas(unEvaluador, unPuntaje, unComentario);
-        this.listaEntrevistas.add(nuevaEntrev);
+        this.ListaEntrevistas.add(nuevaEntrev);
     }
 }
