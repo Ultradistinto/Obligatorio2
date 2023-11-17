@@ -72,6 +72,10 @@ public class Postulante {
         return this.tipoTrabajo;
     }
     
+    public ArrayList<String> getHabilidades(){
+        return this.habilidades;
+    }
+    
     public boolean esValido(String unaHabilidad, int unNivel){
         boolean retorno = false;
 
@@ -93,22 +97,26 @@ public class Postulante {
         setMail(unMail);
         setLinkedin(unLinkedin);
         setTipoTrabajo(unTipo);
+        habilidades = new ArrayList<>();
+        listaEntrevistas = new ArrayList<>();
     }
     
-    public void addHablidades(String unNombre, int unNivel) throws Exception {
-       
-        for(String recorrido:habilidades){
-            String[] partes = recorrido.split(",");
-            if(partes[0].equals(unNombre)){
-                throw new Exception("Error: Esta Temática ya fue ingresada");
+    public void addHablidades(String unNombre, int unNivel){
+        boolean flag = false;
+        for (int i = 0; i < habilidades.size(); i++) {
+            String[] partes = habilidades.get(i).split("\\(|\\)");
+            if (partes[0].equals(unNombre)) {
+                habilidades.set(i, unNombre + "(" + unNivel + ")");
+                flag = true;
             }
         }
-        
-        habilidades.add(unNombre+","+unNivel);
+
+        if(!flag){
+            habilidades.add(unNombre+ "(" + unNivel + ")");
+        }
     }
     
-    public void removeHablidad(String unNombre, int unNivel){
-       String habilidad = unNombre + "," + unNivel;
+    public void removeHablidad(String habilidad){
        habilidades.remove(habilidad);
     }
     

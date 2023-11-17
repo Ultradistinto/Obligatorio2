@@ -4,7 +4,7 @@ import Logica.Sistema;
 import Logica.Tematica;
 import Logica.Postulante;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class VentanaNivelTemas extends javax.swing.JFrame {
     private Sistema modelo;
@@ -17,6 +17,7 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         for (Tematica tema : modelo.getListaTematicas()) {
                 comboTemas.addItem(tema);
         }
+        spinnerNivel.setModel(new SpinnerNumberModel(0, 0, 10, 1));
     }
 
     
@@ -31,7 +32,7 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         labelExperiencia = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaHabilidades = new javax.swing.JList<>();
         botonEliminar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         botonRegistrar = new javax.swing.JButton();
@@ -60,9 +61,19 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         labelExperiencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelExperiencia.setText("Experiencia:");
 
-        jScrollPane1.setViewportView(jList1);
+        listaHabilidades.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaHabilidadesValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaHabilidades);
 
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setText("Cancelar");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +83,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         });
 
         botonRegistrar.setText("Registrar");
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,11 +157,12 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         int nivel = (Integer) spinnerNivel.getValue();
-        String Tema = (String) comboTemas.getSelectedItem();
+        Tematica Tema = (Tematica) comboTemas.getSelectedItem();
         
         
         try{
-            postulante.addHablidades(Tema, nivel);
+            postulante.addHablidades(Tema.toString(), nivel);
+            listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -153,7 +170,19 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    
+    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonRegistrarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        postulante.removeHablidad(listaHabilidades.getSelectedValue());
+        listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void listaHabilidadesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaHabilidadesValueChanged
+        
+    }//GEN-LAST:event_listaHabilidadesValueChanged
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,11 +191,12 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JComboBox<Tematica> comboTemas;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelExperiencia;
     private javax.swing.JLabel labelNivel;
     private javax.swing.JLabel labelTemas;
+    private javax.swing.JList<String> listaHabilidades;
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
+
 }
