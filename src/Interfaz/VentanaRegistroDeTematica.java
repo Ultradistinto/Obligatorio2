@@ -1,6 +1,6 @@
 
 package Interfaz;
-import Logica.Sistema;
+import Dominio.Sistema;
 import javax.swing.JOptionPane;
 
 

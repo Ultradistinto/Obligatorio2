@@ -1,5 +1,5 @@
 
-package Logica;
+package Dominio;
 
 import java.util.ArrayList;
 
@@ -120,8 +120,12 @@ public class Postulante {
        habilidades.remove(habilidad);
     }
     
-    public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario){
-        Entrevistas nuevaEntrev = new Entrevistas(unEvaluador, unPuntaje, unComentario);
+    public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
+        Entrevistas nuevaEntrev = new Entrevistas(unEvaluador, unPuntaje, unComentario, unPostulante);
         this.listaEntrevistas.add(nuevaEntrev);
+    }
+    
+    public String toString(){
+        return this.nombre + "(" + this.cedula + ")";
     }
 }

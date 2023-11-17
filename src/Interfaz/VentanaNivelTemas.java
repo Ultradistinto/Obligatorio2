@@ -1,8 +1,8 @@
 
 package Interfaz;
-import Logica.Sistema;
-import Logica.Tematica;
-import Logica.Postulante;
+import Dominio.Sistema;
+import Dominio.Tematica;
+import Dominio.Postulante;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 

@@ -1,6 +1,6 @@
 
 
-package Logica;
+package Dominio;
 
 public class Evaluador {
     private String nombre;

@@ -1,9 +1,9 @@
 
 
-package Logica;
+package Dominio;
 
 import java.util.ArrayList;
-import Logica.Postulante;
+import Dominio.Postulante;
 
 public class Sistema {
     
@@ -67,7 +67,7 @@ public class Sistema {
     
         for(Tematica recorrido:listaTematicas){
             if(recorrido.getNombre().equals(unNombre)){
-                throw new Exception("Error: Esta Temática ya fue ingresada");
+                throw new Exception("Error: Esta temática ya fue ingresada");
             }
         }
         Tematica posibleTema = new Tematica(unNombre,unaDescripcion);
@@ -78,17 +78,15 @@ public class Sistema {
         listaPostulantes.remove(post);
     }
     
-    public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ){
-        boolean Agrego = true ;
+    public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ) throws Exception {
         for(Evaluador recorrido:listaEvaluadores){
             if(recorrido.getCedula() == unaCedula){
-                Agrego = false;
+                throw new Exception("Error: Un evaluadro con esta cédula ya fue ingresado");
             }
+           
         }
-        if(Agrego){
-            Evaluador nuevoEvaluador = new Evaluador(unNombre,unaCedula,unaDireccion,unIngreso);
-            listaEvaluadores.add(nuevoEvaluador);
-        }
+        Evaluador nuevoEvaluador = new Evaluador(unNombre,unaCedula,unaDireccion,unIngreso);
+        listaEvaluadores.add(nuevoEvaluador);
     }
     
     public void addPuesto(String unNombre, String unTipo){

@@ -1,6 +1,6 @@
 package Interfaz;
-import Logica.Sistema;
-import Logica.Postulante;
+import Dominio.Sistema;
+import Dominio.Postulante;
 import javax.swing.*;
 
 public class VentanaAltaDePostulante extends javax.swing.JFrame {
@@ -204,7 +204,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         try {
             unaCedula = Integer.parseInt(textoCedula.getText());
         } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error: Cedula tiene que ser un Numero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Cédula tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -212,7 +212,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         try {
             unTelefono = Integer.parseInt(textoTelefono.getText());
         } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error: Telefono tiene que ser un Numero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Teléfono tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         

@@ -1,6 +1,6 @@
 
 package Interfaz;
-import Logica.Sistema;
+import Dominio.Sistema;
 
 public class VentanaMenu extends javax.swing.JFrame {
     private Sistema modelo;
@@ -16,22 +16,14 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         OpcionesMenu = new javax.swing.JMenu();
-        RegistroDeTematica = new javax.swing.JMenuItem();
         opcionAltaPostulante = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        bajaPostulante = new javax.swing.JMenuItem();
+        registroDeTematica = new javax.swing.JMenuItem();
+        registroEvaluador = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         OpcionesMenu.setText("Opciones");
-
-        RegistroDeTematica.setText("Registro de tematica");
-        RegistroDeTematica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistroDeTematicaActionPerformed(evt);
-            }
-        });
-        OpcionesMenu.add(RegistroDeTematica);
 
         opcionAltaPostulante.setText("Alta Postulante");
         opcionAltaPostulante.addActionListener(new java.awt.event.ActionListener() {
@@ -41,11 +33,24 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         OpcionesMenu.add(opcionAltaPostulante);
 
-        jMenuItem3.setText("jMenuItem3");
-        OpcionesMenu.add(jMenuItem3);
+        bajaPostulante.setText("Baja Postulante");
+        OpcionesMenu.add(bajaPostulante);
 
-        jMenuItem4.setText("jMenuItem4");
-        OpcionesMenu.add(jMenuItem4);
+        registroDeTematica.setText("Registro de tematica");
+        registroDeTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroDeTematicaActionPerformed(evt);
+            }
+        });
+        OpcionesMenu.add(registroDeTematica);
+
+        registroEvaluador.setText("Registro Evaluador");
+        registroEvaluador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroEvaluadorActionPerformed(evt);
+            }
+        });
+        OpcionesMenu.add(registroEvaluador);
 
         jMenuBar1.add(OpcionesMenu);
 
@@ -65,24 +70,29 @@ public class VentanaMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RegistroDeTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroDeTematicaActionPerformed
+    private void registroDeTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroDeTematicaActionPerformed
         VentanaRegistroDeTematica vent = new VentanaRegistroDeTematica(modelo);
         vent.setVisible(true);
-    }//GEN-LAST:event_RegistroDeTematicaActionPerformed
+    }//GEN-LAST:event_registroDeTematicaActionPerformed
 
     private void opcionAltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionAltaPostulanteActionPerformed
         VentanaAltaDePostulante vent =  new VentanaAltaDePostulante(modelo);
         vent.setVisible(true);
     }//GEN-LAST:event_opcionAltaPostulanteActionPerformed
 
+    private void registroEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroEvaluadorActionPerformed
+        VentanaRegistroDeEvaluador vent = new VentanaRegistroDeEvaluador(modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_registroEvaluadorActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu OpcionesMenu;
-    private javax.swing.JMenuItem RegistroDeTematica;
+    private javax.swing.JMenuItem bajaPostulante;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem opcionAltaPostulante;
+    private javax.swing.JMenuItem registroDeTematica;
+    private javax.swing.JMenuItem registroEvaluador;
     // End of variables declaration//GEN-END:variables
 }

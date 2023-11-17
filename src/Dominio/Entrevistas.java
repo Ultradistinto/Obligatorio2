@@ -1,8 +1,9 @@
-package Logica;
+package Dominio;
 
 
 public class Entrevistas { 
     Evaluador evaluador;
+    Postulante postulante;
     int puntaje;
     String comentarios;
     
@@ -17,10 +18,14 @@ public class Entrevistas {
     public void setComent(String unComentario){
         this.comentarios = unComentario;
     }
+    public void setPostulante(Postulante unPostulante){
+        this.postulante = unPostulante;
+    }
     
-    public Entrevistas(Evaluador unEvaluador, int unPuntaje, String unComentario){
+    public Entrevistas(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
         setEvaluador(unEvaluador);
         setPuntaje(unPuntaje);
         setComent(unComentario);
+        setPostulante(unPostulante);
     }
 }

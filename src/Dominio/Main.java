@@ -1,5 +1,5 @@
 
-package Logica;
+package Dominio;
 import Interfaz.VentanaMenu;
 
 public class Main {

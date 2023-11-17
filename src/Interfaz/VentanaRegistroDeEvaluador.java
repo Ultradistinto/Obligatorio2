@@ -1,12 +1,14 @@
 
 package Interfaz;
-
+import Dominio.Sistema;
+import javax.swing.JOptionPane;
 
 public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaRegistroDeEvaluador() {
+    public VentanaRegistroDeEvaluador(Sistema unSistema) {
         initComponents();
+        modelo = unSistema;
     }
 
     
@@ -63,6 +65,11 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
         });
 
         botonRegistro.setText("Registrar");
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,22 +82,21 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
                         .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                         .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGap(27, 27, 27)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(textoNombre)
-                                .addComponent(textoCedula)
-                                .addComponent(textoDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(27, 27, 27)
-                            .addComponent(textoAño))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(textoNombre)
+                            .addComponent(textoCedula)
+                            .addComponent(textoDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(27, 27, 27)
+                        .addComponent(textoAño)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,12 +135,53 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
     }//GEN-LAST:event_textoNombreActionPerformed
 
     private void textoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCedulaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_textoCedulaActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
+        String unNombre = textoNombre.getText();
+        String unaDireccion = textoDireccion.getText();
+        int unAño;
+        int unaCedula;
+        
+        if (textoCedula.getText().trim().isEmpty() || textoNombre.getText().trim().isEmpty() || textoDireccion.getText().trim().isEmpty() ||  textoAño.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Intente no dejar expacios vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            unAño = Integer.parseInt(textoAño.getText());
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Error: Año tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            unaCedula = Integer.parseInt(textoCedula.getText());
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Error: Cédula tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        try{
+            this.modelo.addEvaluador(unNombre, unaCedula, unaDireccion, unAño);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        textoNombre.setText("");
+        textoAño.setText("");
+        textoDireccion.setText("");
+        textoCedula.setText("");
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     
     
