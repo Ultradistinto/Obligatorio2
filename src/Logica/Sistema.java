@@ -37,6 +37,9 @@ public class Sistema {
         return listaPuestos;
     }
     
+    public Postulante getUltimoPostulante(){
+        return listaPostulantes.get(listaPostulantes.size() - 1);
+    }
     
     
     

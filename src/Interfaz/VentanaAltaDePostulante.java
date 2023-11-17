@@ -234,7 +234,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         try{
             boolean hay = modelo.hayTemas();
             if(hay){
-                VentanaNivelTemas vent =  new VentanaNivelTemas(modelo);
+                VentanaNivelTemas vent =  new VentanaNivelTemas(modelo, modelo.getUltimoPostulante());
                 vent.setVisible(true);
             }
             else{

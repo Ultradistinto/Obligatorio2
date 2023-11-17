@@ -3,6 +3,7 @@ package Interfaz;
 import Logica.Sistema;
 import Logica.Tematica;
 import Logica.Postulante;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
 public class VentanaNivelTemas extends javax.swing.JFrame {
@@ -139,8 +140,15 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        String selected = spinnerNivel.getSelectedItem().toString();
-        int nivel = Integer.parseInt(selected);
+        int nivel = (Integer) spinnerNivel.getValue();
+        String Tema = (String) comboTemas.getSelectedItem();
+        
+        
+        try{
+            postulante.addHablidades(Tema, nivel);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
         
     }//GEN-LAST:event_botonAgregarActionPerformed
