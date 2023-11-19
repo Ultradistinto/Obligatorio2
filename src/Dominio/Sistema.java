@@ -126,7 +126,7 @@ public class Sistema {
     }
     
     public void postulantesValidos(Puesto unPuesto, int unNivel){
-        String[] temas = unPuesto.getTema().split(",");
+        String[] temas = unPuesto.obtenerTemas().split(",");
         ArrayList<Postulante> listaPostulantesValidos = new ArrayList<Postulante>();
         for(Postulante recorrido:this.listaPostulantes){
             boolean[] valido = new boolean[temas.length];

@@ -20,7 +20,7 @@ public class Puesto {
     public void addTema(Tematica unTema){
         this.listaTemas.add(unTema);
     }
-    
+
     public ArrayList<Tematica> getListaTemas(){
         return this.listaTemas;
     }
