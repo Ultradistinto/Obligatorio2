@@ -28,4 +28,12 @@ public class Entrevistas {
         setComent(unComentario);
         setPostulante(unPostulante);
     }
+    
+     public boolean entrevistasValidas(String texto){
+        boolean retorno = false; 
+        if (this.comentarios.contains(texto)){
+            retorno = true;
+        }
+        return retorno;
+    }
 }
