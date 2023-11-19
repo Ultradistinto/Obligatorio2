@@ -1,11 +1,11 @@
 
 package Interfaz;
-
+import Dominio.*;
 
 public class VentanaConsultaPorTematica extends javax.swing.JFrame {
+    private Sistema modelo;
 
-
-    public VentanaConsultaPorTematica() {
+    public VentanaConsultaPorTematica(Sistema unSistema) {
         initComponents();
     }
 

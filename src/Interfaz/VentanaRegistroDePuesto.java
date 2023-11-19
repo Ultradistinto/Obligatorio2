@@ -1,6 +1,8 @@
 
 package Interfaz;
 import Dominio.*;
+import java.awt.List;
+import java.util.ArrayList;
 
 public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     private Sistema modelo;
@@ -8,6 +10,8 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     public VentanaRegistroDePuesto(Sistema unSistema) {
         initComponents();
         modelo = unSistema;
+        
+        listaTemas.setListData(modelo.getListaTematicas().toArray());
     }
 
     
@@ -15,7 +19,7 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grupoBoton = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         textoNombre = new javax.swing.JTextField();
@@ -25,7 +29,7 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
         botonMixto = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaTemas = new javax.swing.JList<>();
+        listaTemas = new javax.swing.JList();
         botonCancelar = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
 
@@ -40,7 +44,7 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Tipo: ");
 
-        buttonGroup1.add(botonRemoto);
+        grupoBoton.add(botonRemoto);
         botonRemoto.setSelected(true);
         botonRemoto.setText("Remoto");
         botonRemoto.addActionListener(new java.awt.event.ActionListener() {
@@ -49,10 +53,10 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(botonPresencial);
+        grupoBoton.add(botonPresencial);
         botonPresencial.setText("Presencial");
 
-        buttonGroup1.add(botonMixto);
+        grupoBoton.add(botonMixto);
         botonMixto.setText("Mixto");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -67,7 +71,7 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
             }
         });
 
-        botonRegistro.setText("Regitrar");
+        botonRegistro.setText("Registrar");
         botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistroActionPerformed(evt);
@@ -142,7 +146,18 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        // TODO add your handling code here:
+        String unNombre = textoNombre.getText();
+        
+        
+        
+        botonMixto.setActionCommand("Mixto");
+        botonPresencial.setActionCommand("Presencial");
+        botonRemoto.setActionCommand("Remoto");
+        String unTipo = grupoBoton.getSelection().getActionCommand();
+        
+        
+        ArrayList<String> listaTemasPuesto = new ArrayList<>(listaTemas.getSelectedValuesList());
+        
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     
@@ -154,13 +169,13 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     private javax.swing.JRadioButton botonPresencial;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JRadioButton botonRemoto;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup grupoBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listaTemas;
+    private javax.swing.JList listaTemas;
     private javax.swing.JTextField textoNombre;
     // End of variables declaration//GEN-END:variables
 }

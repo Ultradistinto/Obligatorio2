@@ -46,6 +46,11 @@ public class Puesto {
         }
         return retorno;
     }
+    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
 
 }
 

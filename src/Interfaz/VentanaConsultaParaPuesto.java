@@ -1,11 +1,11 @@
 
 package Interfaz;
-
+import Dominio.*;
 
 public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaConsultaParaPuesto() {
+    public VentanaConsultaParaPuesto(Sistema unSistema) {
         initComponents();
     }
 
