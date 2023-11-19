@@ -17,12 +17,15 @@ public class Puesto {
     public void setTipo(String unTipo){
         this.tipo = unTipo;
     }
-    public void addTema(Tematica unTema){
-        this.listaTemas.add(unTema);
+    public void setListaTemas(ArrayList<Tematica> unaLista){
+        listaTemas = unaLista;
     }
-
     public ArrayList<Tematica> getListaTemas(){
         return this.listaTemas;
+    }
+
+    public void addTema(Tematica unTema){
+        this.listaTemas.add(unTema);
     }
     
     public String obtenerTemas(){
@@ -37,21 +40,19 @@ public class Puesto {
         }
         return retorno;
     }
-    
+
     public Puesto(String unNombre, String unTipo, ArrayList<Tematica> unaLista){
         setNombre(unNombre);
         setTipo(unTipo);
         setListaTemas(unaLista);
     }
     
-    public void setListaTemas(ArrayList<Tematica> unaLista){
-        listaTemas = unaLista;
-    }
+    
     
     public boolean temaDeInteres(Tematica unTema){
         boolean retorno = false; 
         for (Tematica recorrido : this.listaTemas){
-            if(recorrido.equals(recorrido)){
+            if(unTema.equals(recorrido)){
                 retorno = true;
             }
         }
