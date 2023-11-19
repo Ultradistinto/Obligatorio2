@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Puesto {
     private String nombre;
     private String tipo;
-    private ArrayList<String> ListaTemas;
+    private ArrayList<Tematica> listaTemas;
     
     public void setNombre(String unNombre){
         this.nombre = unNombre;
@@ -17,30 +17,41 @@ public class Puesto {
     public void setTipo(String unTipo){
         this.tipo = unTipo;
     }
-    public void addTema(String unTema){
-        this.ListaTemas.add(unTema);
+    public void addTema(Tematica unTema){
+        this.listaTemas.add(unTema);
     }
-    public String getTema(){
+    
+    public ArrayList<Tematica> getListaTemas(){
+        return this.listaTemas;
+    }
+    
+    public String obtenerTemas(){
         String retorno = "";
-        for(int i = 0; i<this.ListaTemas.size(); i++){
-            if((i-1)==this.ListaTemas.size()){
-                retorno += this.ListaTemas.get(i);
+        for(int i = 0; i<this.listaTemas.size(); i++){
+            if((i-1)==this.listaTemas.size()){
+                retorno += this.listaTemas.get(i);
             }
             else{
-                retorno += this.ListaTemas.get(i)+"," ;
+                retorno += this.listaTemas.get(i)+"," ;
             } 
         }
         return retorno;
     }
-    public Puesto(String unNombre, String unTipo){
+    
+    public Puesto(String unNombre, String unTipo, ArrayList<Tematica> unaLista){
         setNombre(unNombre);
         setTipo(unTipo);
+        setListaTemas(unaLista);
     }
     
-    public boolean temaDeInteres(String unTema){
+    public void setListaTemas(ArrayList<Tematica> unaLista){
+        listaTemas = unaLista;
+    }
+    
+    public boolean temaDeInteres(Tematica unTema){
         boolean retorno = false; 
-        for (String recorrido : this.ListaTemas){
-            if(recorrido.equalsIgnoreCase(recorrido)){
+        for (Tematica recorrido : this.listaTemas){
+            if(recorrido.equals(recorrido)){
                 retorno = true;
             }
         }
