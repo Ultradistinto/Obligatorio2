@@ -104,7 +104,7 @@ public class Sistema {
     public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ) throws Exception {
         for(Evaluador recorrido:listaEvaluadores){
             if(recorrido.getCedula() == unaCedula){
-                throw new Exception("Error: Un evaluadro con esta cédula ya fue ingresado");
+                throw new Exception("Error: Un evaluador con esta cédula ya fue ingresado");
             }
            
         }
@@ -112,15 +112,15 @@ public class Sistema {
         listaEvaluadores.add(nuevoEvaluador);
     }
     
-    public void addPuesto(String unNombre, String unTipo){
+    public void addPuesto(String unNombre, String unTipo, ArrayList<Tematica> unaLista) throws Exception{
         boolean Agrego = true;
         for(Puesto recorrido:listaPuestos){
             if(recorrido.getNombre().equals(unNombre)){
-                Agrego = false;
+                throw new Exception("Error: Un puesto con este nombre ya fue ingresado");
             }
         }
         if(Agrego){
-            Puesto nuevoPuesto = new Puesto(unNombre,unTipo);
+            Puesto nuevoPuesto = new Puesto(unNombre,unTipo, unaLista);
             listaPuestos.add(nuevoPuesto);
         }
     }
