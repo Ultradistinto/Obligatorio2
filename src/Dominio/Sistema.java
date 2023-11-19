@@ -121,5 +121,24 @@ public class Sistema {
             }
         }
     }
+    
+    public int postulantePorTema(String unTema){
+        int cant = 0;
+        for(Postulante recorrido : this.listaPostulantes){
+            if(recorrido.validTema(unTema)){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    public int puestoPorTema(String unTema){
+        int cant = 0;
+        for(Puesto recorrido : this.listaPuestos){
+            if(recorrido.temaDeInteres(unTema)){
+                cant++;
+            }
+        }
+        return cant;
+    }
 }
 

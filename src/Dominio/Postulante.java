@@ -136,4 +136,15 @@ public class Postulante {
             }
         }
     }
+    
+    public boolean validTema(String tema){
+        boolean retorno = false;
+        for (String recorrido: this.habilidades){
+            String[] partes = recorrido.split("\\(|\\)");
+            if(Integer.parseInt(partes[1]) >= 5){
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
 }
