@@ -178,6 +178,11 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
         int unPuntaje = Integer.parseInt(lista[1]);
         String unComentario = areaComentario.getText();
         Entrevista unaEntrevista = new Entrevista(unEvaluador, unPuntaje, unComentario, unPostulante);
+        unPostulante.addEntrevista(unaEntrevista);
+        
+        
+        areaComentario.setText("");
+        sliderPuntaje.setValue(50);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

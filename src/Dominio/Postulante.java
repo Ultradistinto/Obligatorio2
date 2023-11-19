@@ -147,4 +147,9 @@ public class Postulante {
         }
         return retorno;
     }
+    
+    
+    public void addEntrevista(Entrevista unaEntrevista){
+        listaEntrevistas.add(unaEntrevista);
+    }
 }
