@@ -90,6 +90,16 @@ public class Sistema {
         return retorno;
     }
     
+    public Puesto getPuestoToString(String pos){
+        Puesto retorno = null;
+        for(Puesto recorrido:listaPuestos){
+            if(recorrido.getNombre().equals(pos)){
+                retorno = recorrido;
+            }
+        }
+        return retorno;
+    }
+    
     public Evaluador getEvaluadorToString(String pos){
         Evaluador retorno = null;
         String[] partes = pos.split("\\(|\\)");
