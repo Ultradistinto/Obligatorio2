@@ -1,12 +1,13 @@
 
 package Interfaz;
-
+import Dominio.*;
 
 public class VentanaRegistroDePuesto extends javax.swing.JFrame {
-
+    private Sistema modelo;
     
-    public VentanaRegistroDePuesto() {
+    public VentanaRegistroDePuesto(Sistema unSistema) {
         initComponents();
+        modelo = unSistema;
     }
 
     
@@ -40,6 +41,7 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
         jLabel3.setText("Tipo: ");
 
         buttonGroup1.add(botonRemoto);
+        botonRemoto.setSelected(true);
         botonRemoto.setText("Remoto");
         botonRemoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

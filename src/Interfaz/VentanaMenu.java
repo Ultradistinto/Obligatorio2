@@ -18,6 +18,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         OpcionesMenu = new javax.swing.JMenu();
         opcionAltaPostulante = new javax.swing.JMenuItem();
         bajaPostulante = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         registroDeTematica = new javax.swing.JMenuItem();
         registroEvaluador = new javax.swing.JMenuItem();
@@ -41,6 +42,14 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         OpcionesMenu.add(bajaPostulante);
+
+        jMenuItem2.setText("Registro de puesto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        OpcionesMenu.add(jMenuItem2);
 
         jMenuItem1.setText("Ingreso de entrevista");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +118,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        VentanaRegistroDePuesto vent = new VentanaRegistroDePuesto(modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -116,6 +130,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem bajaPostulante;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem opcionAltaPostulante;
     private javax.swing.JMenuItem registroDeTematica;
     private javax.swing.JMenuItem registroEvaluador;
