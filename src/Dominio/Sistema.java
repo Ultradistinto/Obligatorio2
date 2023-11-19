@@ -78,6 +78,18 @@ public class Sistema {
         listaPostulantes.remove(post);
     }
     
+    public void removePostulanteString(String post){
+        String[] partes = post.split("\\(|\\)");
+        Postulante postulanteBorrar = null;
+        int Ced = Integer.parseInt(partes[1]);
+        for(Postulante recorrido:listaPostulantes){
+            if(recorrido.getCedula() == Ced){
+                postulanteBorrar = recorrido;
+            }
+        }
+        listaPostulantes.remove(postulanteBorrar);
+    }
+    
     public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ) throws Exception {
         for(Evaluador recorrido:listaEvaluadores){
             if(recorrido.getCedula() == unaCedula){

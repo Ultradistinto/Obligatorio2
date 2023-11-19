@@ -152,6 +152,7 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTemasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        modelo.removePostulante(postulante);
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 

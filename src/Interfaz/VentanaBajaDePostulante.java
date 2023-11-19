@@ -1,6 +1,8 @@
 
 package Interfaz;
 import Dominio.Sistema;
+import javax.swing.JOptionPane;
+
 
 public class VentanaBajaDePostulante extends javax.swing.JFrame {
     private Sistema modelo;
@@ -8,7 +10,12 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     public VentanaBajaDePostulante(Sistema unSistema) {
         initComponents();
         modelo = unSistema;
-        listaPostulantes.setListData(modelo.getListaPostulantes().toArray(new String[0]));
+        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
+        if (modelo.getListaPostulantes().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "The list is empty.");
+        } else {
+            JOptionPane.showMessageDialog(null, "The list is not empty.");
+        }
     }
 
     
@@ -17,7 +24,7 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaPostulantes = new javax.swing.JList<>();
+        listaPostulantes = new javax.swing.JList();
         labelBajaPostulante = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -80,7 +87,8 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        modelo.removePostulanteString(listaPostulantes.getSelectedValue().toString());
+        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -95,6 +103,6 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBajaPostulante;
-    private javax.swing.JList<String> listaPostulantes;
+    private javax.swing.JList listaPostulantes;
     // End of variables declaration//GEN-END:variables
 }

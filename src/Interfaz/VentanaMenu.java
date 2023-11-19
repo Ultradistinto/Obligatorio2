@@ -34,6 +34,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         OpcionesMenu.add(opcionAltaPostulante);
 
         bajaPostulante.setText("Baja Postulante");
+        bajaPostulante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaPostulanteActionPerformed(evt);
+            }
+        });
         OpcionesMenu.add(bajaPostulante);
 
         registroDeTematica.setText("Registro de tematica");
@@ -84,6 +89,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         VentanaRegistroDeEvaluador vent = new VentanaRegistroDeEvaluador(modelo);
         vent.setVisible(true);
     }//GEN-LAST:event_registroEvaluadorActionPerformed
+
+    private void bajaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaPostulanteActionPerformed
+        VentanaBajaDePostulante vent = new VentanaBajaDePostulante(modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_bajaPostulanteActionPerformed
 
     
 

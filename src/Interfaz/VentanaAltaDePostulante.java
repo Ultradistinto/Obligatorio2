@@ -16,7 +16,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grupoBoton = new javax.swing.ButtonGroup();
         labelNombre = new javax.swing.JLabel();
         labelCedula = new javax.swing.JLabel();
         labelDireccion = new javax.swing.JLabel();
@@ -66,15 +66,21 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(botonRemoto);
+        grupoBoton.add(botonRemoto);
         botonRemoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonRemoto.setSelected(true);
         botonRemoto.setText("Remoto");
+        botonRemoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRemotoActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(botonPresencial);
+        grupoBoton.add(botonPresencial);
         botonPresencial.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botonPresencial.setText("Presencial");
 
-        buttonGroup1.add(botonMixto);
+        grupoBoton.add(botonMixto);
         botonMixto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botonMixto.setText("Mixto");
 
@@ -194,6 +200,10 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         int unaCedula;
         String unMail = textoMail.getText();
         String unLinkedin = textoLinkedin.getText();
+        botonMixto.setActionCommand("Mixto");
+        botonPresencial.setActionCommand("Presencial");
+        botonRemoto.setActionCommand("Remoto");
+        String unTipo = grupoBoton.getSelection().getActionCommand();
         
         if (textoCedula.getText().trim().isEmpty() || textoNombre.getText().trim().isEmpty() || textoTelefono.getText().trim().isEmpty() || textoDireccion.getText().trim().isEmpty() || textoMail.getText().trim().isEmpty() || textoLinkedin.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error: Intente no dejar expacios vacios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -218,7 +228,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         
         
         try{
-            this.modelo.addPostulante(unNombre, unaCedula, unaDireccion, unTelefono, unMail, unLinkedin, unMail);
+            this.modelo.addPostulante(unNombre, unaCedula, unaDireccion, unTelefono, unMail, unLinkedin, unTipo);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -249,6 +259,10 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void botonRemotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRemotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRemotoActionPerformed
+
     
     
 
@@ -258,7 +272,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
     private javax.swing.JRadioButton botonPresencial;
     private javax.swing.JRadioButton botonRemoto;
     private javax.swing.JButton botonSiguiente;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup grupoBoton;
     private javax.swing.JLabel labelAltaPostulante;
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelDireccion;

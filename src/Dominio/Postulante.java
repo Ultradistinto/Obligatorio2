@@ -124,7 +124,7 @@ public class Postulante {
         Entrevistas nuevaEntrev = new Entrevistas(unEvaluador, unPuntaje, unComentario, unPostulante);
         this.listaEntrevistas.add(nuevaEntrev);
     }
-    
+    @Override
     public String toString(){
         return this.nombre + "(" + this.cedula + ")";
     }
