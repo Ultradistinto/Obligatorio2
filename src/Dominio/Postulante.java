@@ -128,4 +128,23 @@ public class Postulante {
     public String toString(){
         return this.nombre + "(" + this.cedula + ")";
     }
+    
+    public void funcBuscador(String texto){
+        for(Entrevistas recorrido : this.listaEntrevistas){
+            if(recorrido.entrevistasValidas(texto)){
+                //color rojo y que se muestre
+            }
+        }
+    }
+    
+    public boolean validTema(String tema){
+        boolean retorno = false;
+        for (String recorrido: this.habilidades){
+            String[] partes = recorrido.split("\\(|\\)");
+            if(Integer.parseInt(partes[1]) >= 5){
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
 }

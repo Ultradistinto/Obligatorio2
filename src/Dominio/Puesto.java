@@ -36,6 +36,16 @@ public class Puesto {
         setNombre(unNombre);
         setTipo(unTipo);
     }
+    
+    public boolean temaDeInteres(String unTema){
+        boolean retorno = false; 
+        for (String recorrido : this.ListaTemas){
+            if(recorrido.equalsIgnoreCase(recorrido)){
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
 
 }
 
