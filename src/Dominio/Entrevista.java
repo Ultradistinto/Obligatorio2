@@ -1,7 +1,7 @@
 package Dominio;
 
 
-public class Entrevistas { 
+public class Entrevista { 
     Evaluador evaluador;
     Postulante postulante;
     int puntaje;
@@ -22,7 +22,7 @@ public class Entrevistas {
         this.postulante = unPostulante;
     }
     
-    public Entrevistas(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
+    public Entrevista(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
         setEvaluador(unEvaluador);
         setPuntaje(unPuntaje);
         setComent(unComentario);

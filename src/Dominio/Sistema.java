@@ -78,16 +78,27 @@ public class Sistema {
         listaPostulantes.remove(post);
     }
     
-    public void removePostulanteString(String post){
-        String[] partes = post.split("\\(|\\)");
-        Postulante postulanteBorrar = null;
-        int Ced = Integer.parseInt(partes[1]);
+    
+    public Postulante getPostulanteToString(String pos){
+        Postulante retorno = null;
+        String[] partes = pos.split("\\(|\\)");
         for(Postulante recorrido:listaPostulantes){
-            if(recorrido.getCedula() == Ced){
-                postulanteBorrar = recorrido;
+            if(recorrido.getCedula() == Integer.parseInt(partes[1])){
+                retorno = recorrido;
             }
         }
-        listaPostulantes.remove(postulanteBorrar);
+        return retorno;
+    }
+    
+    public Evaluador getEvaluadorToString(String pos){
+        Evaluador retorno = null;
+        String[] partes = pos.split("\\(|\\)");
+        for(Evaluador recorrido:listaEvaluadores){
+            if(recorrido.getCedula() == Integer.parseInt(partes[1])){
+                retorno = recorrido;
+            }
+        }
+        return retorno;
     }
     
     public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ) throws Exception {

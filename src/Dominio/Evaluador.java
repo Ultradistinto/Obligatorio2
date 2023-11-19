@@ -46,4 +46,9 @@ public class Evaluador {
         setDireccion(unaDireccion);
         setIngreso(unIngreso);
     }
+    
+    @Override
+    public String toString(){
+        return this.nombre + "(" + this.cedula + ")";
+    }
 }

@@ -87,7 +87,7 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        modelo.removePostulanteString(listaPostulantes.getSelectedValue().toString());
+        modelo.removePostulante(modelo.getPostulanteToString(listaPostulantes.getSelectedValue().toString()));
         listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
     }//GEN-LAST:event_jButton2ActionPerformed
 

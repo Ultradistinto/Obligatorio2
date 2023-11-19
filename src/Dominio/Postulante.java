@@ -12,7 +12,7 @@ public class Postulante {
     private String linkedin;
     private String tipoTrabajo;
     private ArrayList<String> habilidades;
-    private ArrayList<Entrevistas> listaEntrevistas;
+    private ArrayList<Entrevista> listaEntrevistas;
     
 
     
@@ -121,7 +121,7 @@ public class Postulante {
     }
     
     public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
-        Entrevistas nuevaEntrev = new Entrevistas(unEvaluador, unPuntaje, unComentario, unPostulante);
+        Entrevista nuevaEntrev = new Entrevista(unEvaluador, unPuntaje, unComentario, unPostulante);
         this.listaEntrevistas.add(nuevaEntrev);
     }
     @Override
@@ -130,7 +130,7 @@ public class Postulante {
     }
     
     public void funcBuscador(String texto){
-        for(Entrevistas recorrido : this.listaEntrevistas){
+        for(Entrevista recorrido : this.listaEntrevistas){
             if(recorrido.entrevistasValidas(texto)){
                 //color rojo y que se muestre
             }
