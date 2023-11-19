@@ -20,7 +20,7 @@ public class Puesto {
     public void addTema(String unTema){
         this.ListaTemas.add(unTema);
     }
-    public String getTema(){
+    public String obtenerTemas(){
         String retorno = "";
         for(int i = 0; i<this.ListaTemas.size(); i++){
             if((i-1)==this.ListaTemas.size()){
