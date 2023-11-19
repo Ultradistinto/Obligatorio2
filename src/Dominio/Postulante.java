@@ -128,4 +128,12 @@ public class Postulante {
     public String toString(){
         return this.nombre + "(" + this.cedula + ")";
     }
+    
+    public void funcBuscador(String texto){
+        for(Entrevistas recorrido : this.listaEntrevistas){
+            if(recorrido.entrevistasValidas(texto)){
+                //color rojo y que se muestre
+            }
+        }
+    }
 }
