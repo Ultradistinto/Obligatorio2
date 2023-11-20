@@ -201,9 +201,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame implements Observer{
     // End of variables declaration//GEN-END:variables
     @Override
     public void update(Observable o, Object arg){
+        comboTemas.removeAllItems();
         for (Tematica tema : modelo.getListaTematicas()) {
                 comboTemas.addItem(tema);
         }
+        
         listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
     }
 }

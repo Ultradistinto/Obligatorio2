@@ -145,7 +145,7 @@ public class Sistema extends Observable {
         return listaPostulantesValidos;
     }
     
-    public int postulantePorTema(String unTema){
+    public int postulantePorTema(Tematica unTema){
         int cant = 0;
         for(Postulante recorrido : this.listaPostulantes){
             if(recorrido.validTema(unTema)){
@@ -163,6 +163,8 @@ public class Sistema extends Observable {
         }
         return cant;
     }
+    
+    
    
     
 }

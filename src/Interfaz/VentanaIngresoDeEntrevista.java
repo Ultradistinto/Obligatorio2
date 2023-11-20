@@ -2,6 +2,7 @@
 package Interfaz;
 import Dominio.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class VentanaIngresoDeEntrevista extends javax.swing.JFrame implements Observer {
     private Sistema modelo;
@@ -172,8 +173,27 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame implements Ob
         int unPuntaje = Integer.parseInt(lista[1]);
         String unComentario = areaComentario.getText();
         int unNumero = modelo.getContador();
-        unPostulante.addEntrev(unEvaluador, unPuntaje, unComentario, unNumero);
-        modelo.aumentoContador();
+        
+        
+        if (unComentario.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Intente no dejar expacios vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try{
+            if (unPostulante == null) {
+                throw new NullPointerException("unPostulante esta vacio");
+            }
+            if (unEvaluador == null) {
+                throw new NullPointerException("unEvaluador esta vacio");
+            }
+            unPostulante.addEntrev(unEvaluador, unPuntaje, unComentario, unNumero);
+            modelo.aumentoContador();
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Error: No se olvide elegir un postulante y evaluador", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         
         areaComentario.setText("");
         sliderPuntaje.setValue(50);

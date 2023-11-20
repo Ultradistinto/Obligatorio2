@@ -146,11 +146,11 @@ public class Postulante extends Observable{
         }
     }
     
-    public boolean validTema(String tema){
+    public boolean validTema(Tematica tema){
         boolean retorno = false;
         for (String recorrido: this.habilidades){
             String[] partes = recorrido.split("\\(|\\)");
-            if(Integer.parseInt(partes[1]) >= 5){
+            if(Integer.parseInt(partes[1]) >= 5  && tema.getNombre().equals(partes[0])){
                 retorno = true;
             }
         }
