@@ -39,6 +39,9 @@ public class Entrevista {
         String retornado = "<html>";
         String[] retorno = this.comentarios.split(unTexto);
         for(int i = 0; i < retorno.length; i++){
+            if(i == 0 && retorno[i].isEmpty()){
+                continue;
+            }
             retornado += retorno[i];
             retornado += "<font color='red'>";
             retornado += unTexto;
