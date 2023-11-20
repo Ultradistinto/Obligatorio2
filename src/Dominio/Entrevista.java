@@ -39,18 +39,27 @@ public class Entrevista implements Serializable{
     
     public String getComentarioColoreado(String unTexto){
         String retornado = "<html>";
+        int con = 0;
+        boolean pasoUnaVez = false;
         String[] retorno = this.comentarios.split(unTexto);
-        for(int i = 0; i < retorno.length; i++){
-            if(i == 0 && retorno[i].isEmpty()){
-                continue;
-            }
-            retornado += retorno[i];
+        if(this.comentarios.equalsIgnoreCase(unTexto)){
             retornado += "<font color='red'>";
             retornado += unTexto;
             retornado += "</font>";
         }
+        else{
+            for(int i = 0; i < retorno.length; i++){
+                retornado += retorno[i];
+                if(con<retorno.length-1 || !pasoUnaVez){
+                    retornado += "<font color='red'>";
+                    retornado += unTexto;
+                    retornado += "</font>";
+                    con++;
+                    pasoUnaVez = true;
+                }
+            }
+        }
         retornado+="</html>";
-        
         return retornado;
     }
     

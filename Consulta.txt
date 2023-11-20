@@ -1,3 +1,0 @@
-ser
-Nombre: Juan Cedula: 12 Mail: 12
-Nombre: Raul Cedula: 34 Mail: 3434
