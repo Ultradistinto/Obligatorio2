@@ -17,7 +17,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         initComponents();
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
-                guardar();
+                jMenuItemGuardarSisActionPerformed();
             }
         }); 
     }
@@ -182,17 +182,18 @@ public class VentanaMenu extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     
-    public void guardar() {
+    private void jMenuItemGuardarSisActionPerformed() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("datos.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
+            ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("datos.ser")));
+            out.writeObject(this.modelo);
             out.close();
-            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Se guardo el sistema ","Guardar", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error al guardar el sistema ","Guardar", JOptionPane.ERROR_MESSAGE);
+            //System.exit(1);
         }
-    }
+    } 
+
 
     
 
