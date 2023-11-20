@@ -228,21 +228,6 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         
         
         try{
-            this.modelo.addPostulante(unNombre, unaCedula, unaDireccion, unTelefono, unMail, unLinkedin, unTipo);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        textoNombre.setText("");
-        textoCedula.setText("");
-        textoDireccion.setText("");
-        textoTelefono.setText("");
-        textoMail.setText("");
-        textoLinkedin.setText("");
-        
-        try{
             boolean hay = modelo.hayTemas();
             if(hay){
                 VentanaNivelTemas vent =  new VentanaNivelTemas(modelo, modelo.getUltimoPostulante());
@@ -256,13 +241,18 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
             return;
         }
         
-        
         try{
             this.modelo.addPostulante(unNombre, unaCedula, unaDireccion, unTelefono, unMail, unLinkedin, unTipo);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        textoNombre.setText("");
+        textoCedula.setText("");
+        textoDireccion.setText("");
+        textoTelefono.setText("");
+        textoMail.setText("");
+        textoLinkedin.setText("");
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
