@@ -1,6 +1,10 @@
 
 package Interfaz;
 import Dominio.*;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Observer;
 import java.util.Observable;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +49,7 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
         jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaEntrevistas = new javax.swing.JTable();
+        labelLink = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,6 +134,15 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
             tablaEntrevistas.getColumnModel().getColumn(3).setPreferredWidth(1000);
         }
 
+        labelLink.setForeground(java.awt.Color.blue);
+        labelLink.setText("link*");
+        labelLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelLinkMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,19 +175,23 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
                                 .addGap(0, 460, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(195, 195, 195))
                             .addComponent(labelDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelMail, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelMail, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(labelFormato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelLinkedin)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelLink, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(136, 136, 136))))
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -193,7 +211,9 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
                         .addGap(20, 20, 20)
                         .addComponent(labelMail)
                         .addGap(20, 20, 20)
-                        .addComponent(labelLinkedin)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelLinkedin)
+                            .addComponent(labelLink))
                         .addGap(20, 20, 20)
                         .addComponent(labelFormato)
                         .addGap(20, 20, 20)
@@ -233,7 +253,7 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
         labelDireccion.setText("Dirección: " + postulante.getDireccion());
         labelTelefono.setText("Telefono: " + postulante.getTelefono());
         labelMail.setText("Mail: " + postulante.getMail());
-        labelLinkedin.setText("Linkedin: " + postulante.getLinkedin());
+        labelLink.setText(postulante.getLinkedin());
         labelFormato.setText("Dirección: " + postulante.getTipoTrabajo());
         listaExperiencia.setListData(postulante.getHabilidades().toArray());
         
@@ -277,6 +297,14 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void labelLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLinkMouseClicked
+        try {
+            Desktop.getDesktop().browse(new URI(labelLink.getText()));
+        } catch (IOException | URISyntaxException e1) {
+            e1.printStackTrace();
+        }
+    }//GEN-LAST:event_labelLinkMouseClicked
+
     
     
 
@@ -295,6 +323,7 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelDireccion;
     private javax.swing.JLabel labelFormato;
+    private javax.swing.JLabel labelLink;
     private javax.swing.JLabel labelLinkedin;
     private javax.swing.JLabel labelMail;
     private javax.swing.JLabel labelNombre;

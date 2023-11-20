@@ -1,8 +1,7 @@
 package Dominio;
 
+
 import java.io.Serializable;
-
-
 public class Entrevista implements Serializable{ 
     private Evaluador evaluador;
     private int puntaje;

@@ -98,7 +98,7 @@ public class VentanaInicio extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Se cargo el sistema ","Cargar", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException | ClassNotFoundException e) {
              JOptionPane.showMessageDialog(this, "Error al cargar el sistema ","Cargar", JOptionPane.ERROR_MESSAGE);
-
+             return;
         }
         VentanaMenu vent = new VentanaMenu(modelo);
         vent.setVisible(true);
