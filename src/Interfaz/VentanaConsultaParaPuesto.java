@@ -36,7 +36,7 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame implements Obs
         botonCancelar = new javax.swing.JButton();
         botonExportar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTitulo.setText("Consulta para puesto ");

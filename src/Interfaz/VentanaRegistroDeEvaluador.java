@@ -2,6 +2,7 @@
 package Interfaz;
 import Dominio.Sistema;
 import javax.swing.JOptionPane;
+import java.time.Year;
 
 public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
     private Sistema modelo;
@@ -28,7 +29,7 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
         botonCancelar = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Registro Evaluador");
@@ -145,7 +146,7 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         String unNombre = textoNombre.getText();
         String unaDireccion = textoDireccion.getText();
-        int unAño;
+        int unAño = 0;
         int unaCedula;
         
         if (textoCedula.getText().trim().isEmpty() || textoNombre.getText().trim().isEmpty() || textoDireccion.getText().trim().isEmpty() ||  textoAño.getText().trim().isEmpty()) {
@@ -155,10 +156,16 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
         
         try {
             unAño = Integer.parseInt(textoAño.getText());
+            if(unAño > Year.now().getValue()){
+                throw new Exception("El año tiene que ser menor al actual");
+            }
         }
         catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Error: Año tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: El Año de ingreso tiene que ser un número", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         try {

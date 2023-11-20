@@ -1,10 +1,11 @@
 
 package Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class Postulante extends Observable{
+public class Postulante extends Observable implements Serializable{
     private String nombre;
     private int cedula;
     private String direccion;

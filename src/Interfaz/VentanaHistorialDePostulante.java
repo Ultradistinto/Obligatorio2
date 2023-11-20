@@ -46,7 +46,7 @@ public class VentanaHistorialDePostulante extends javax.swing.JFrame implements 
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaEntrevistas = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Historial Postulante");

@@ -1,11 +1,13 @@
 package Dominio;
 
+import java.io.Serializable;
 
-public class Entrevista { 
-    Evaluador evaluador;
-    int puntaje;
-    String comentarios;
-    int numero;
+
+public class Entrevista implements Serializable{ 
+    private Evaluador evaluador;
+    private int puntaje;
+    private String comentarios;
+    private int numero;
     
     public void setEvaluador(Evaluador unEvaluador){
         this.evaluador = unEvaluador;

@@ -34,7 +34,7 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame implements Ob
         jScrollPane3 = new javax.swing.JScrollPane();
         areaComentario = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane1.setViewportView(listaPostulantes);
 

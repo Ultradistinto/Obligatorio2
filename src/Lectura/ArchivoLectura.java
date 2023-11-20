@@ -1,4 +1,4 @@
-package Serializacion;
+package Lectura;
 
 import java.io.*;
 import java.nio.file.Paths;

@@ -2,7 +2,9 @@
 
 package Dominio;
 
-public class Evaluador {
+import java.io.Serializable;
+
+public class Evaluador implements Serializable{
     private String nombre;
     private int cedula;
     private String direccion;

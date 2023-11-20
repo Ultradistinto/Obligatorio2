@@ -1,6 +1,13 @@
 
 package Interfaz;
 import Dominio.Sistema;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javax.swing.JOptionPane;
 
 public class VentanaMenu extends javax.swing.JFrame {
     private Sistema modelo;
@@ -8,6 +15,11 @@ public class VentanaMenu extends javax.swing.JFrame {
     public VentanaMenu(Sistema unSistema) {
         modelo = unSistema;
         initComponents();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                guardar();
+            }
+        }); 
     }
     
     @SuppressWarnings("unchecked")
@@ -169,6 +181,18 @@ public class VentanaMenu extends javax.swing.JFrame {
         VentanaHistorialDePostulante vent = new VentanaHistorialDePostulante(modelo);
         vent.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+    
+    public void guardar() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("datos.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.close();
+            fileOut.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el sistema ","Guardar", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     
 

@@ -1,8 +1,9 @@
  package Dominio;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Tematica {
+public class Tematica implements Serializable{
     private String nombre;
     private String descripcion;
 

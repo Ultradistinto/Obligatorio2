@@ -2,12 +2,15 @@
 
 package Dominio;
 
-import Serializacion.ArchivoGrabacion;
+import Lectura.ArchivoGrabacion;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.*;
+import java.io.*;
 
-public class Sistema extends Observable {
+
+import javax.swing.JOptionPane;
+public class Sistema extends Observable implements Serializable{ 
     
     private ArrayList<Postulante> listaPostulantes;
     private ArrayList<Tematica> listaTematicas;
@@ -22,6 +25,7 @@ public class Sistema extends Observable {
         listaEvaluadores = new ArrayList<>();
         listaPuestos = new ArrayList<>(); 
         contadorEntrevistas = 1;
+          
     }
     
     
@@ -53,7 +57,6 @@ public class Sistema extends Observable {
         contadorEntrevistas++;
     }
     
-    
     public void addPostulante(String unNombre, int unaCedula, String unaDireccion, int unTelefono, String unMail, String unLinkedin, String unTipo )throws Exception {
   
         for(Postulante recorrido:listaPostulantes){
@@ -79,7 +82,7 @@ public class Sistema extends Observable {
     public void addTematica(String unNombre, String unaDescripcion) throws Exception {
     
         for(Tematica recorrido:listaTematicas){
-            if(recorrido.getNombre().equals(unNombre)){
+            if(recorrido.getNombre().toLowerCase().equals(unNombre.toLowerCase())){
                 throw new Exception("Error: Esta temática ya fue ingresada");
             }
         }

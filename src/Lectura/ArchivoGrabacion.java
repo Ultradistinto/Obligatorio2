@@ -1,4 +1,4 @@
-package Serializacion;
+package Lectura;
 
 import java.io.FileNotFoundException;
 import java.util.Formatter;

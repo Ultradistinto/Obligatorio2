@@ -37,7 +37,7 @@ public class VentanaAltaDePostulante extends javax.swing.JFrame {
         botonSiguiente = new javax.swing.JButton();
         labelAltaPostulante = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelNombre.setText("Nombre:");
