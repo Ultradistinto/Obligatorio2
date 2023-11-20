@@ -171,7 +171,7 @@ public class VentanaRegistroDeEvaluador extends javax.swing.JFrame {
         
         
         try{
-            this.modelo.addEvaluador(unNombre, unaCedula, unaDireccion, unAño);
+            modelo.addEvaluador(unNombre, unaCedula, unaDireccion, unAño);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

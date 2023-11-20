@@ -2,20 +2,18 @@
 package Interfaz;
 import Dominio.Sistema;
 import javax.swing.JOptionPane;
+import Dominio.Postulante;
+import java.util.Observable;
+import java.util.Observer;
 
-
-public class VentanaBajaDePostulante extends javax.swing.JFrame {
+public class VentanaBajaDePostulante extends javax.swing.JFrame implements Observer{
     private Sistema modelo;
    
     public VentanaBajaDePostulante(Sistema unSistema) {
         initComponents();
         modelo = unSistema;
-        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
-        if (modelo.getListaPostulantes().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "The list is empty.");
-        } else {
-            JOptionPane.showMessageDialog(null, "The list is not empty.");
-        }
+        modelo.addObserver(this);
+        update(null, null);
     }
 
     
@@ -87,8 +85,7 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        modelo.removePostulante(modelo.getPostulanteToString(listaPostulantes.getSelectedValue().toString()));
-        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
+        modelo.removePostulante((Postulante)listaPostulantes.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -105,4 +102,8 @@ public class VentanaBajaDePostulante extends javax.swing.JFrame {
     private javax.swing.JLabel labelBajaPostulante;
     private javax.swing.JList listaPostulantes;
     // End of variables declaration//GEN-END:variables
+@Override
+    public void update(Observable o, Object arg){
+        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
+    }
 }

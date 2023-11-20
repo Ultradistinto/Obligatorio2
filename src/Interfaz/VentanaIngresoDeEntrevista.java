@@ -1,15 +1,16 @@
 
 package Interfaz;
 import Dominio.*;
+import java.util.*;
 
-public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
+public class VentanaIngresoDeEntrevista extends javax.swing.JFrame implements Observer {
     private Sistema modelo;
     
     public VentanaIngresoDeEntrevista(Sistema unSistema) {
         initComponents();
         modelo = unSistema;
-        listaEvaluadores.setListData(modelo.getListaEvaluadores().toArray());
-        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
+        modelo.addObserver(this);
+        update(null, null);
     }
 
     
@@ -28,7 +29,6 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
         sliderPuntaje = new javax.swing.JSlider();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         areaComentario = new javax.swing.JTextArea();
@@ -73,8 +73,6 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("jLabel4");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Comentario: ");
 
@@ -86,6 +84,15 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -107,45 +114,32 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addComponent(jLabel3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(sliderPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
-                        .addComponent(jLabel5)))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(79, 79, 79))
+                        .addGap(184, 184, 184)
+                        .addComponent(sliderPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addGap(24, 24, 24)
-                        .addComponent(labelPuntaje))
-                    .addComponent(jLabel4))
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(24, 24, 24)
+                .addComponent(labelPuntaje)
                 .addGap(18, 18, 18)
                 .addComponent(sliderPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
@@ -172,13 +166,12 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        Evaluador unEvaluador = modelo.getEvaluadorToString(listaEvaluadores.getSelectedValue().toString());
-        Postulante unPostulante = modelo.getPostulanteToString(listaPostulantes.getSelectedValue().toString());
+        Evaluador unEvaluador = (Evaluador)(listaEvaluadores.getSelectedValue());
+        Postulante unPostulante = (Postulante) listaPostulantes.getSelectedValue();
         String[] lista = labelPuntaje.getText().split(" ");
         int unPuntaje = Integer.parseInt(lista[1]);
         String unComentario = areaComentario.getText();
-        Entrevista unaEntrevista = new Entrevista(unEvaluador, unPuntaje, unComentario, unPostulante);
-        unPostulante.addEntrevista(unaEntrevista);
+        unPostulante.addEntrev(unEvaluador, unPuntaje, unComentario, unPostulante);
         
         
         areaComentario.setText("");
@@ -188,6 +181,7 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
     
     
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaComentario;
     private javax.swing.JButton jButton1;
@@ -195,7 +189,6 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -205,4 +198,11 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame {
     private javax.swing.JList listaPostulantes;
     private javax.swing.JSlider sliderPuntaje;
     // End of variables declaration//GEN-END:variables
+
+    
+    @Override
+    public void update(Observable o, Object arg){
+        listaEvaluadores.setListData(modelo.getListaEvaluadores().toArray());
+        listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
+    }
 }

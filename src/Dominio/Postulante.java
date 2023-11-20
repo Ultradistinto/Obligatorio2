@@ -2,8 +2,9 @@
 package Dominio;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Postulante {
+public class Postulante extends Observable{
     private String nombre;
     private int cedula;
     private String direccion;
@@ -33,7 +34,7 @@ public class Postulante {
     }
     
     public void setDireccion(String unaDireccion){
-        this.nombre = unaDireccion;
+        this.direccion = unaDireccion;
     }
     
     public String getDireccion(){
@@ -108,11 +109,15 @@ public class Postulante {
             if (partes[0].equals(unNombre)) {
                 habilidades.set(i, unNombre + "(" + unNivel + ")");
                 flag = true;
+                setChanged();
+                notifyObservers();
             }
         }
 
         if(!flag){
             habilidades.add(unNombre+ "(" + unNivel + ")");
+            setChanged();
+            notifyObservers();
         }
     }
     
@@ -123,6 +128,8 @@ public class Postulante {
     public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
         Entrevista nuevaEntrev = new Entrevista(unEvaluador, unPuntaje, unComentario, unPostulante);
         this.listaEntrevistas.add(nuevaEntrev);
+        setChanged();
+        notifyObservers();
     }
     @Override
     public String toString(){
@@ -146,10 +153,5 @@ public class Postulante {
             }
         }
         return retorno;
-    }
-    
-    
-    public void addEntrevista(Entrevista unaEntrevista){
-        listaEntrevistas.add(unaEntrevista);
     }
 }

@@ -28,6 +28,11 @@ public class Puesto {
         this.listaTemas.add(unTema);
     }
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
+    
     public String obtenerTemas(){
         String retorno = "";
         for(int i = 0; i<this.listaTemas.size(); i++){
@@ -57,11 +62,6 @@ public class Puesto {
             }
         }
         return retorno;
-    }
-    
-    @Override
-    public String toString(){
-        return this.nombre;
     }
 
 }

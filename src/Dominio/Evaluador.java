@@ -25,7 +25,7 @@ public class Evaluador {
     }
     
     public void setDireccion(String unaDireccion){
-        this.nombre = unaDireccion;
+        this.direccion = unaDireccion;
     }
     
     public String getDireccion(){

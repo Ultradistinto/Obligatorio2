@@ -1,17 +1,19 @@
 
 package Interfaz;
 import Dominio.*;
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
 
-public class VentanaRegistroDePuesto extends javax.swing.JFrame {
+public class VentanaRegistroDePuesto extends javax.swing.JFrame implements Observer {
     private Sistema modelo;
     
     public VentanaRegistroDePuesto(Sistema unSistema) {
         initComponents();
         modelo = unSistema;
-        
-        listaTemas.setListData(modelo.getListaTematicas().toArray());
+        modelo.addObserver(this);
+        update(null, null);
     }
 
     
@@ -156,8 +158,17 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
         String unTipo = grupoBoton.getSelection().getActionCommand();
         
         
-        ArrayList<String> listaTemasPuesto = new ArrayList<>(listaTemas.getSelectedValuesList());
+        ArrayList<Tematica> listaTemasPuesto = new ArrayList<>(listaTemas.getSelectedValuesList());
         
+        try{
+            modelo.addPuesto(unNombre, unTipo, listaTemasPuesto);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        textoNombre.setText("");
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     
@@ -178,4 +189,9 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame {
     private javax.swing.JList listaTemas;
     private javax.swing.JTextField textoNombre;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg){
+        listaTemas.setListData(modelo.getListaTematicas().toArray());
+    }
 }

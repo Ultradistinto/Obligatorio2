@@ -3,20 +3,21 @@ package Interfaz;
 import Dominio.Sistema;
 import Dominio.Tematica;
 import Dominio.Postulante;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
-public class VentanaNivelTemas extends javax.swing.JFrame {
+public class VentanaNivelTemas extends javax.swing.JFrame implements Observer{
     private Sistema modelo;
     private Postulante postulante;
     
     public VentanaNivelTemas(Sistema unSistema, Postulante unPostulante) {
         initComponents();
         modelo = unSistema;
+        modelo.addObserver(this);
         postulante = unPostulante;
-        for (Tematica tema : modelo.getListaTematicas()) {
-                comboTemas.addItem(tema);
-        }
+        
         spinnerNivel.setModel(new SpinnerNumberModel(0, 0, 10, 1));
     }
 
@@ -163,7 +164,6 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
         
         try{
             postulante.addHablidades(Tema.toString(), nivel);
-            listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -177,7 +177,6 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         postulante.removeHablidad(listaHabilidades.getSelectedValue());
-        listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void listaHabilidadesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaHabilidadesValueChanged
@@ -199,5 +198,11 @@ public class VentanaNivelTemas extends javax.swing.JFrame {
     private javax.swing.JList<String> listaHabilidades;
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
-
+    @Override
+    public void update(Observable o, Object arg){
+        for (Tematica tema : modelo.getListaTematicas()) {
+                comboTemas.addItem(tema);
+        }
+        listaHabilidades.setListData(postulante.getHabilidades().toArray(new String[0]));
+    }
 }

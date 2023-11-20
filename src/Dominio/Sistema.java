@@ -3,9 +3,9 @@
 package Dominio;
 
 import java.util.ArrayList;
-import Dominio.Postulante;
+import java.util.*;
 
-public class Sistema {
+public class Sistema extends Observable {
     
     private ArrayList<Postulante> listaPostulantes;
     private ArrayList<Tematica> listaTematicas;
@@ -53,6 +53,8 @@ public class Sistema {
         }
         Postulante nuevoPostulante = new Postulante(unNombre,unaCedula,unaDireccion,unTelefono,unMail,unLinkedin,unTipo);
         listaPostulantes.add(nuevoPostulante);
+        setChanged();
+        notifyObservers();
     }
     
     public boolean hayTemas(){
@@ -72,44 +74,16 @@ public class Sistema {
         }
         Tematica posibleTema = new Tematica(unNombre,unaDescripcion);
         listaTematicas.add(posibleTema);
+        setChanged();
+        notifyObservers();
     }
     
     public void removePostulante(Postulante post){
         listaPostulantes.remove(post);
+        setChanged();
+        notifyObservers();
     }
     
-    
-    public Postulante getPostulanteToString(String pos){
-        Postulante retorno = null;
-        String[] partes = pos.split("\\(|\\)");
-        for(Postulante recorrido:listaPostulantes){
-            if(recorrido.getCedula() == Integer.parseInt(partes[1])){
-                retorno = recorrido;
-            }
-        }
-        return retorno;
-    }
-    
-    public Puesto getPuestoToString(String pos){
-        Puesto retorno = null;
-        for(Puesto recorrido:listaPuestos){
-            if(recorrido.getNombre().equals(pos)){
-                retorno = recorrido;
-            }
-        }
-        return retorno;
-    }
-    
-    public Evaluador getEvaluadorToString(String pos){
-        Evaluador retorno = null;
-        String[] partes = pos.split("\\(|\\)");
-        for(Evaluador recorrido:listaEvaluadores){
-            if(recorrido.getCedula() == Integer.parseInt(partes[1])){
-                retorno = recorrido;
-            }
-        }
-        return retorno;
-    }
     
     public void addEvaluador(String unNombre, int unaCedula, String unaDireccion, int unIngreso ) throws Exception {
         for(Evaluador recorrido:listaEvaluadores){
@@ -120,6 +94,8 @@ public class Sistema {
         }
         Evaluador nuevoEvaluador = new Evaluador(unNombre,unaCedula,unaDireccion,unIngreso);
         listaEvaluadores.add(nuevoEvaluador);
+        setChanged();
+        notifyObservers();
     }
     
     public void addPuesto(String unNombre, String unTipo, ArrayList<Tematica> unaLista) throws Exception{
@@ -132,6 +108,8 @@ public class Sistema {
         if(Agrego){
             Puesto nuevoPuesto = new Puesto(unNombre,unTipo, unaLista);
             listaPuestos.add(nuevoPuesto);
+            setChanged();
+            notifyObservers();
         }
     }
     
@@ -164,7 +142,7 @@ public class Sistema {
         }
         return cant;
     }
-    public int puestoPorTema(String unTema){
+    public int puestoPorTema(Tematica unTema){
         int cant = 0;
         for(Puesto recorrido : this.listaPuestos){
             if(recorrido.temaDeInteres(unTema)){
@@ -173,5 +151,7 @@ public class Sistema {
         }
         return cant;
     }
+   
+    
 }
 
