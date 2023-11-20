@@ -100,7 +100,11 @@ public class VentanaInicio extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Error al cargar el sistema ","Cargar", JOptionPane.ERROR_MESSAGE);
 
         }
+        VentanaMenu vent = new VentanaMenu(modelo);
+        vent.setVisible(true);
+        dispose();
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
