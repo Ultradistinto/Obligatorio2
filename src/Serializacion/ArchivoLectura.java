@@ -1,4 +1,4 @@
-package practico11;
+package Serializacion;
 
 import java.io.*;
 import java.nio.file.Paths;

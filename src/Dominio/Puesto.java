@@ -27,7 +27,7 @@ public class Puesto {
     public void addTema(Tematica unTema){
         this.listaTemas.add(unTema);
     }
-    
+   
     @Override
     public String toString(){
         return this.nombre;

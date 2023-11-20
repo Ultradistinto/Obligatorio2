@@ -1,4 +1,4 @@
-package practico11;
+package Serializacion;
 
 import java.io.FileNotFoundException;
 import java.util.Formatter;

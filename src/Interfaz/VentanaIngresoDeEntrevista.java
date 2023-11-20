@@ -171,8 +171,9 @@ public class VentanaIngresoDeEntrevista extends javax.swing.JFrame implements Ob
         String[] lista = labelPuntaje.getText().split(" ");
         int unPuntaje = Integer.parseInt(lista[1]);
         String unComentario = areaComentario.getText();
-        unPostulante.addEntrev(unEvaluador, unPuntaje, unComentario, unPostulante);
-        
+        int unNumero = modelo.getContador();
+        unPostulante.addEntrev(unEvaluador, unPuntaje, unComentario, unNumero);
+        modelo.aumentoContador();
         
         areaComentario.setText("");
         sliderPuntaje.setValue(50);

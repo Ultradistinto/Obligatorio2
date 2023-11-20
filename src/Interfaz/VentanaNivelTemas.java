@@ -17,7 +17,8 @@ public class VentanaNivelTemas extends javax.swing.JFrame implements Observer{
         modelo = unSistema;
         modelo.addObserver(this);
         postulante = unPostulante;
-        
+        postulante.addObserver(this);
+        update(null,null);
         spinnerNivel.setModel(new SpinnerNumberModel(0, 0, 10, 1));
     }
 

@@ -6,6 +6,7 @@ public class Entrevista {
     Postulante postulante;
     int puntaje;
     String comentarios;
+    int numero;
     
     public void setEvaluador(Evaluador unEvaluador){
         this.evaluador = unEvaluador;
@@ -22,11 +23,14 @@ public class Entrevista {
         this.postulante = unPostulante;
     }
     
-    public Entrevista(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
+    public void setNumero(int unNumero){
+        this.numero = unNumero;
+    }
+    
+    public Entrevista(Evaluador unEvaluador, int unPuntaje, String unComentario,int unNumero){
         setEvaluador(unEvaluador);
         setPuntaje(unPuntaje);
         setComent(unComentario);
-        setPostulante(unPostulante);
     }
     
      public boolean entrevistasValidas(String texto){

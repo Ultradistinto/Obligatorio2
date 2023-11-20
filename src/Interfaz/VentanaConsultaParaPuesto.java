@@ -1,12 +1,19 @@
 
 package Interfaz;
 import Dominio.*;
+import java.util.Observer;
+import java.util.Observable;
+import javax.swing.SpinnerNumberModel;
 
-public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
+public class VentanaConsultaParaPuesto extends javax.swing.JFrame implements Observer{
     private Sistema modelo;
     
     public VentanaConsultaParaPuesto(Sistema unSistema) {
         initComponents();
+        modelo = unSistema;
+        modelo.addObserver(this);
+        update(null, null);
+        spinnerNivel.setModel(new SpinnerNumberModel(0, 0, 10, 1));
     }
 
     
@@ -17,13 +24,13 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
         labelTitulo = new javax.swing.JLabel();
         labelPuesto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaPuestos = new javax.swing.JList<>();
+        listaPuestos = new javax.swing.JList();
         labelNivel = new javax.swing.JLabel();
         spinnerNivel = new javax.swing.JSpinner();
         botonConsulta = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaPostulantes = new javax.swing.JList<>();
+        listaPostulantes = new javax.swing.JList();
         botonCancelar = new javax.swing.JButton();
         botonExportar = new javax.swing.JButton();
 
@@ -116,7 +123,10 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultaActionPerformed
-        // TODO add your handling code here:
+        Puesto unPuesto = (Puesto)(listaPuestos.getSelectedValue());
+        int unNivel = (Integer) spinnerNivel.getValue();
+        
+        listaPostulantes.setListData(modelo.postulantesValidos(unPuesto, unNivel).toArray());
     }//GEN-LAST:event_botonConsultaActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -136,8 +146,14 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame {
     private javax.swing.JLabel labelNivel;
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JList<String> listaPostulantes;
-    private javax.swing.JList<String> listaPuestos;
+    private javax.swing.JList listaPostulantes;
+    private javax.swing.JList listaPuestos;
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
+
+
+    public void update(Observable o, Object arg){
+        listaPuestos.setListData(modelo.getListaPuestos().toArray());
+    }
+
 }

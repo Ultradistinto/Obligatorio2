@@ -11,13 +11,15 @@ public class Sistema extends Observable {
     private ArrayList<Tematica> listaTematicas;
     private ArrayList<Evaluador> listaEvaluadores;
     private ArrayList<Puesto> listaPuestos;
+    private int contadorEntrevistas;
     
     
     public Sistema(){
         listaPostulantes = new ArrayList<>();
         listaTematicas = new ArrayList<>();
         listaEvaluadores = new ArrayList<>();
-        listaPuestos = new ArrayList<>();   
+        listaPuestos = new ArrayList<>(); 
+        contadorEntrevistas = 1;
     }
     
     
@@ -41,6 +43,13 @@ public class Sistema extends Observable {
         return listaPostulantes.get(listaPostulantes.size() - 1);
     }
     
+    public int getContador(){
+        return contadorEntrevistas;
+    }
+    
+    public void aumentoContador(){
+        contadorEntrevistas++;
+    }
     
     
     public void addPostulante(String unNombre, int unaCedula, String unaDireccion, int unTelefono, String unMail, String unLinkedin, String unTipo )throws Exception {
@@ -113,15 +122,15 @@ public class Sistema extends Observable {
         }
     }
     
-    public void postulantesValidos(Puesto unPuesto, int unNivel){
-        String[] temas = unPuesto.obtenerTemas().split(",");
+    public ArrayList<Postulante> postulantesValidos(Puesto unPuesto, int unNivel){
+        ArrayList<Tematica> temas = unPuesto.getListaTemas();
         ArrayList<Postulante> listaPostulantesValidos = new ArrayList<Postulante>();
         for(Postulante recorrido:this.listaPostulantes){
-            boolean[] valido = new boolean[temas.length];
+            boolean[] valido = new boolean[temas.size()];
             boolean valTotal = true;
-            for(int i = 0; i < temas.length; i++){
-                valido[i]=recorrido.esValido(temas[i],unNivel);
-            }
+            for(int i = 0; i < temas.size(); i++){
+                valido[i]=recorrido.esValido(temas.get(i).toString(),unNivel);
+            }                                                                                                                                                                                                                                                                                                               
             for(boolean val:valido){
                 if(!val && valTotal){
                     valTotal = false;
@@ -129,8 +138,11 @@ public class Sistema extends Observable {
             }
             if(valTotal){
                 listaPostulantesValidos.add(recorrido);
+                setChanged();
+                notifyObservers();
             }
         }
+        return listaPostulantesValidos;
     }
     
     public int postulantePorTema(String unTema){

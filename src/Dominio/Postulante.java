@@ -81,7 +81,7 @@ public class Postulante extends Observable{
         boolean retorno = false;
 
         for(String recorrido:habilidades){
-            String[] partes = recorrido.split(",");
+            String[] partes = recorrido.split("\\(|\\)");
             if( partes[0].equals(unaHabilidad) && Integer.parseInt(partes[1])>=unNivel){
                 //tirar ventana error
                 retorno = true;
@@ -123,10 +123,12 @@ public class Postulante extends Observable{
     
     public void removeHablidad(String habilidad){
        habilidades.remove(habilidad);
+       setChanged();
+       notifyObservers();
     }
     
-    public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario, Postulante unPostulante){
-        Entrevista nuevaEntrev = new Entrevista(unEvaluador, unPuntaje, unComentario, unPostulante);
+    public void addEntrev(Evaluador unEvaluador, int unPuntaje, String unComentario, int unNumero){
+        Entrevista nuevaEntrev = new Entrevista(unEvaluador, unPuntaje, unComentario, unNumero);
         this.listaEntrevistas.add(nuevaEntrev);
         setChanged();
         notifyObservers();
