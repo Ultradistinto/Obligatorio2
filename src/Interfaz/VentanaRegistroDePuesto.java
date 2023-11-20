@@ -150,7 +150,10 @@ public class VentanaRegistroDePuesto extends javax.swing.JFrame implements Obser
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         String unNombre = textoNombre.getText();
         
-        
+        if (textoNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Intente no dejar expacios vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         botonMixto.setActionCommand("Mixto");
         botonPresencial.setActionCommand("Presencial");
