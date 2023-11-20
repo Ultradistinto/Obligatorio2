@@ -77,6 +77,10 @@ public class Postulante extends Observable{
         return this.habilidades;
     }
     
+    public ArrayList<Entrevista> getEntrevistas(){
+        return this.listaEntrevistas;
+    }
+    
     public boolean esValido(String unaHabilidad, int unNivel){
         boolean retorno = false;
 
@@ -138,12 +142,14 @@ public class Postulante extends Observable{
         return this.nombre + "(" + this.cedula + ")";
     }
     
-    public void funcBuscador(String texto){
+    public ArrayList<Entrevista> funcBuscador(String texto){
+        ArrayList<Entrevista> retorno = new ArrayList<Entrevista>();
         for(Entrevista recorrido : this.listaEntrevistas){
             if(recorrido.entrevistasValidas(texto)){
-                //color rojo y que se muestre
+                retorno.add(recorrido);
             }
         }
+        return retorno;
     }
     
     public boolean validTema(Tematica tema){
@@ -154,6 +160,17 @@ public class Postulante extends Observable{
                 retorno = true;
             }
         }
+        return retorno;
+    }
+    public boolean tieneEntre(){
+        boolean retorno = true; 
+        if(this.listaEntrevistas.size()<=0){
+            retorno = false;
+        }
+        return retorno;
+    }
+    public int ultEntPun(){
+        int retorno = this.listaEntrevistas.get((listaEntrevistas.size()-1)).getPuntaje() ;
         return retorno;
     }
 }

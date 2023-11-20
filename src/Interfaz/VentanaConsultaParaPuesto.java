@@ -7,6 +7,8 @@ import javax.swing.SpinnerNumberModel;
 
 public class VentanaConsultaParaPuesto extends javax.swing.JFrame implements Observer{
     private Sistema modelo;
+    private Puesto puesto;
+    private int nivel;
     
     public VentanaConsultaParaPuesto(Sistema unSistema) {
         initComponents();
@@ -67,6 +69,11 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame implements Obs
         });
 
         botonExportar.setText("Exportar");
+        botonExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonExportarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,15 +130,20 @@ public class VentanaConsultaParaPuesto extends javax.swing.JFrame implements Obs
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultaActionPerformed
-        Puesto unPuesto = (Puesto)(listaPuestos.getSelectedValue());
-        int unNivel = (Integer) spinnerNivel.getValue();
+        puesto = (Puesto)(listaPuestos.getSelectedValue());
+        nivel = (Integer) spinnerNivel.getValue();
         
-        listaPostulantes.setListData(modelo.postulantesValidos(unPuesto, unNivel).toArray());
+        listaPostulantes.setListData(modelo.postulantesValidos(puesto, nivel).toArray());
     }//GEN-LAST:event_botonConsultaActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExportarActionPerformed
+        int unNivel = (Integer) spinnerNivel.getValue();
+        modelo.exportArch(modelo.postulantesValidos(puesto, unNivel), puesto);
+    }//GEN-LAST:event_botonExportarActionPerformed
 
     
     

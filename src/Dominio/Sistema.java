@@ -2,6 +2,8 @@
 
 package Dominio;
 
+import Serializacion.ArchivoGrabacion;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -136,12 +138,18 @@ public class Sistema extends Observable {
                     valTotal = false;
                 }
             }
-            if(valTotal){
+            if(valTotal && recorrido.tieneEntre()){
                 listaPostulantesValidos.add(recorrido);
                 setChanged();
                 notifyObservers();
             }
         }
+        Collections.sort(listaPostulantesValidos, new Comparator<Postulante>() {
+            @Override
+            public int compare(Postulante o1, Postulante o2) {
+               return new Integer(o1.ultEntPun()).compareTo(new Integer(o2.ultEntPun()));
+            }
+        });
         return listaPostulantesValidos;
     }
     
@@ -164,8 +172,28 @@ public class Sistema extends Observable {
         return cant;
     }
     
-    
+    public void exportArch(ArrayList<Postulante> unaLista, Puesto unPuesto){
+        ArchivoGrabacion aExportar = new ArchivoGrabacion("Consulta.txt");
+        aExportar.grabarLinea(unPuesto.getNombre());
+        for(Postulante recorrido:unaLista){
+            aExportar.grabarLinea("Nombre: "+recorrido.getNombre()+" Cedula: "+recorrido.getCedula()+" Mail: "+recorrido.getMail());
+        }
+        aExportar.cerrar();
+    }
    
+    public ArrayList<Postulante> ordenarPost(){
+        ArrayList<Postulante> listaPostulantesOrdenados = this.listaPostulantes ;
+        Collections.sort(listaPostulantesOrdenados, new Comparator<Postulante>() {
+            @Override
+            public int compare(Postulante o1, Postulante o2) {
+               return new Integer(o2.getCedula()).compareTo(new Integer(o1.getCedula()));
+            }
+        });
+        return listaPostulantesOrdenados;
+    }
     
+    public ArrayList<Entrevista> busqueda(Postulante unPostulante, String unText){
+        return unPostulante.funcBuscador(unText);
+    }
 }
 

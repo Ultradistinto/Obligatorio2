@@ -18,6 +18,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         OpcionesMenu = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         opcionAltaPostulante = new javax.swing.JMenuItem();
         bajaPostulante = new javax.swing.JMenuItem();
@@ -45,6 +46,14 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         OpcionesMenu.add(jMenuItem4);
+
+        jMenuItem5.setText("Consulta Historial");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        OpcionesMenu.add(jMenuItem5);
 
         jMenuBar1.add(OpcionesMenu);
 
@@ -156,6 +165,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        VentanaHistorialDePostulante vent = new VentanaHistorialDePostulante(modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,6 +181,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem opcionAltaPostulante;
     private javax.swing.JMenuItem registroDeTematica;
     private javax.swing.JMenuItem registroEvaluador;
